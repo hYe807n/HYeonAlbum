@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const models = require("./models");
-const port = precess.env.PORT || 8080;
 const multer = require("multer");
 const upload = multer({
   storage: multer.diskStorage({
@@ -18,6 +17,8 @@ const upload = multer({
 app.use(express.json());
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
+
+const port = process.env.PORT || 8080;
 
 app.get("/banners", (req, res) => {
   models.Banner.findAll({
